@@ -1,7 +1,13 @@
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
-  height: 100%;
   font-family: Consolas, monospace;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 
@@ -18,7 +24,7 @@ header {
 }
 
 main, article {
-  margin: 110px 0px 0px 10px;
+  margin: 100px 0px 0px 10px;
 }
 
 h1 {
@@ -38,7 +44,7 @@ footer {
   font-size: 80%;
   font-family: Arial, sans-serif;
   color: rgba(0, 0, 0, 0.5);
-  margin-top: 1fr;
+  margin-top: auto;
 }
 
 .bg_index {
