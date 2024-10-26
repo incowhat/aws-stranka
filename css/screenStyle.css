@@ -3,38 +3,72 @@ html {
 }
 
 body {
-  margin: 0;
-  font-family: Consolas, monospace;
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  font-family: "Roboto Mono", Consolas, monospace;
+  font-weight: 450;
+  margin: 0;
+  background-attachment: fixed;
 }
 
+.background-index {
+  background-image: linear-gradient(135deg, rgba(0, 7, 103, 0.515), rgba(0, 255, 0, 0.321));
+}
+.background-writer {
+  background-image: linear-gradient(95deg, rgba(183, 0, 255, 0.2), rgba(206, 225, 0, 0.2));
+}
+.background-archive {
+  background-image: linear-gradient(115deg, rgba(0, 255, 204, 0.2), rgba(225, 0, 79, 0.2));
+}
+.background-a1 {
+  background-image: linear-gradient(40deg, rgba(21, 0, 255, 0.332), rgba(197, 0, 0, 0.314));
+}
+.background-a2 {
+  background-image: linear-gradient(165deg, rgba(195, 94, 0, 0.583), rgba(0, 225, 124, 0.394));
+}
+.background-a3 {
+  background-image: linear-gradient(30deg, rgba(147, 46, 255, 0.423), rgba(31, 144, 0, 0.451));
+}
 
-header {
-  background: rgba(0, 0, 0);
+.navbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 100px;
-  padding-left: 10px;
+  min-height: 2rem;
+  padding: 1.2rem 1rem;
+  background: rgb(0, 0, 0);
+}
+
+.navbar-links a{
+  color: white;
+  /* text-decoration: none; */
+}
+
+
+.header {
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.header-text {
+  font-family: "Press Start 2P", monospace;
+  font-size: 1.5rem;
+  text-align: left;
+  background: linear-gradient(90deg in hsl longer hue, rgb(255, 0, 0), rgb(0, 0, 255));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-decoration: none;
 }
 
 main, article {
   margin: 100px 0px 0px 10px;
-}
-
-h1 {
-  font-family: cursive;
-  font-size: 40px;
-  text-align: left;
-  background: linear-gradient(90deg in hsl longer hue, rgb(255, 0, 0), rgb(0, 0, 255));
-  display: inline-block;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 footer {
@@ -47,19 +81,11 @@ footer {
   margin-top: auto;
 }
 
-.bg_index {
-  background: linear-gradient(135deg, rgba(255, 145, 0, 0.2), rgba(17, 165, 17, 0.2));
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
+
+circle {
+  mix-blend-mode: screen;
 }
 
-.bg_article1 {
-  background: linear-gradient(150deg, rgba(183, 0, 255, 0.2), rgba(206, 225, 0, 0.2));
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-}
 
 .back {
   font-size: 40%;
@@ -158,6 +184,10 @@ th {
 
 caption {
   text-align: justify;
+}
+
+img {
+  width: 60%;
 }
 
 .bg_red {
