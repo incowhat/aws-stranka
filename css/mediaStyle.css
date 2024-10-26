@@ -1,4 +1,4 @@
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 580px) {
   .navbar {
     height: 4rem;
   }
@@ -14,7 +14,22 @@
     align-items: flex-end;
   }
 
-  main, article {
-    margin-top: 6rem;
+  .content-grid {
+    display: block;
+    margin-top: 6.4rem;
+  }
+
+  .grid-main {
+    width: 100%;
+  }
+
+  .content-grid aside {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .content-grid {
+    grid-template-columns: 1fr 4fr 1fr;
   }
 }

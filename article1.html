@@ -6,6 +6,7 @@
     <meta name="description" content="Website being made as an assignment fow AWS class [FEI TUKE]">
     <link rel="stylesheet" href="css/screenStyle.css">
     <link rel="stylesheet" href="css/mediaStyle.css">
+    <link rel="stylesheet" href="css/articles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
@@ -19,62 +20,64 @@
         <a class="header-text" href="index.html">Farby & stuff</a>
       </header>
       <div class="navbar-links">
-        <a href="javascript:history.back()" class="navbar-back">Back</a>
-        <a href="writer.html">About writer</a>
-        <a href="archive.html">Archive</a>
+        <a href="javascript:history.back()" class="navbar-back">Späť</a>
+        <a href="writer.html">O writerovi</a>
+        <a href="archive.html">Archív</a>
       </div>
     </nav>
 
-    <article>
-      <h2>Čo sú farby?</h2>
-      <p>Farby sú to, čo vidíme, keď svetlo dopadá na predmety a odráža sa do našich očí. Všetky farby, ktoré vidíme, môžeme vytvoriť zmiešaním troch základných farieb: červenej, zelenej a modrej. Tieto farby sa nazývajú primárne farby. <em>(to sú primárne farby aditívne, ešte existujú aj subtraktívne primárne farby)</em></p>
+    <div class="content-grid">
+      <aside>placeholder</aside>
+      <article class="grid-article">
+        <h2>Čo sú farby?</h2>
+        <p>Farby sú to, čo vidíme, keď svetlo dopadá na predmety a odráža sa do našich očí. Všetky farby, ktoré vidíme, môžeme vytvoriť zmiešaním troch základných farieb: červenej, zelenej a modrej. Tieto farby sa nazývajú primárne farby. <em>(to sú primárne farby aditívne, ešte existujú aj subtraktívne primárne farby)</em></p>
 
-      <h2>Ako vnímame farby?</h2>
-      <p>V našich očiach sú špeciálne bunky nazývané čapíky, ktoré sú citlivé na rôzne farby. Keď svetlo dopadne na sietnicu, čapíky premenia svetelné vlny na elektrické signály, ktoré náš mozog interpretuje ako farby.</p>
+        <h2>Ako vnímame farby?</h2>
+        <p>V našich očiach sú špeciálne bunky nazývané čapíky, ktoré sú citlivé na rôzne farby. Keď svetlo dopadne na sietnicu, čapíky premenia svetelné vlny na elektrické signály, ktoré náš mozog interpretuje ako farby.</p>
 
-      <h3>Základné farby</h3>
-      <ul class="color-shadow">
-        <li class="red">Červená</li>
-        <li class="green">Zelená</li>
-        <li class="blue">Modrá</li>
-      </ul>
+        <h3>Základné farby</h3>
+        <ul class="color-shadow">
+          <li class="red">Červená</li>
+          <li class="green">Zelená</li>
+          <li class="blue">Modrá</li>
+        </ul>
 
-      <h3>Sekundárne farby</h3>
-      <ol>
-        <li class="cyan">Azúrová (<span class="blue">modrá</span> + <span class="green">zelená</span>)</li>
-        <li class="magenta">Purpurová (<span class="red">červená</span> + <span class="blue">modrá</span>)</li>
-        <li class="yellow">Žltá (<span class="red">červená</span> + <span class="green">zelená</span>)</li>
-      </ol>
+        <h3>Sekundárne farby</h3>
+        <ol class="color-shadow">
+          <li class="cyan">Azúrová (<span class="blue">modrá</span> + <span class="green">zelená</span>)</li>
+          <li class="magenta">Purpurová (<span class="red">červená</span> + <span class="blue">modrá</span>)</li>
+          <li class="yellow">Žltá (<span class="red">červená</span> + <span class="green">zelená</span>)</li>
+        </ol>
 
-      <h2>Farebný kruh</h2>
-      <img srcset="img/color_wheel320.png 320w, img/color_wheel480.png 480w, img/color_wheel800.png 800w" 
-      sizes="(max-width: 440px) 280px, (max-width: 800px) 440px, 800px"
-      src="img/color_wheel800.png" alt="Farebný kruh"/>
-      <p>Farebný kruh je vizuálne znázornenie vzťahov medzi farbami. Ukazuje, ako farby spolu súvisia a ako ich môžeme kombinovať.</p>
+        <h2>Farebný kruh</h2>
+        <img srcset="img/color_wheel320.png 320w, img/color_wheel480.png 480w, img/color_wheel800.png 800w" 
+        sizes="(max-width: 530px) 320px, (max-width: 1000px) 480px, 800px"
+        src="img/color_wheel800.png" alt="Farebný kruh"/>
+        <p>Farebný kruh je vizuálne znázornenie vzťahov medzi farbami. Ukazuje, ako farby spolu súvisia a ako ich môžeme kombinovať.</p>
 
-      <h2>Tabuľka farieb</h2>
-        <table>
+        <h2>Tabuľka farieb</h2>
+        <table class="table-a1">
           <caption>
-            <li>Porovnanie teplých a studených farieb a ich psychologické účinky</li>
+            <p>Porovnanie teplých a studených farieb a ich psychologické účinky</p>
           </caption>
-          <thead>
+          <thead class="table-a1-head">
             <tr>
               <th>Farba</th>
               <th>Teplá/Studená</th>
               <th>Psychologické účinky</th>
               <th>Spojitosti</th>
               <th>Hexadecimálny kód</th>
-              <th class="color_column">Farebná vzorka</th>
+              <th class="color-column">Farebná vzorka</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="table-a1-body">
             <tr>
               <td>Červená</td>
               <td>Teplá</td>
               <td>Energia, vášeň, vzrušenie, pozornosť</td>
               <td>Upozornenia, výpredaje, láska</td>
               <td>#ff0000</td>
-              <td class="bg_red"></td>
+              <td class="bg-red"></td>
             </tr>
             <tr>
               <td>Oranžová</td>
@@ -82,7 +85,7 @@
               <td>Entuziazmus, šťastie, priateľstvo</td>
               <td>Jesenné farby, jedlo, zábava</td>
               <td>#ff6400</td>
-              <td class="bg_orange"></td>
+              <td class="bg-orange"></td>
             </tr>
             <tr>
               <td>Žltá</td>
@@ -90,7 +93,7 @@
               <td>Šťastie, optimizmus, inteligencia</td>
               <td>Slnko, citróny, deti</td>
               <td>#ffff00</td>
-              <td class="bg_yellow"></td>
+              <td class="bg-yellow"></td>
             </tr>
             <tr>
               <td>Modrá</td>
@@ -98,7 +101,7 @@
               <td>Kľud, dôvera, stabilita, pokoj</td>
               <td>Obloha, more, korporátny dizajn</td>
               <td>#0000ff</td>
-              <td class="bg_blue"></td>
+              <td class="bg-blue"></td>
             </tr>
             <tr>
               <td>Fialová</td>
@@ -106,7 +109,7 @@
               <td>Kráľovstvo, luxus, kreativita, múdrosť</td>
               <td>Luxusné značky, umelecké diela</td>
               <td>#7b00ff</td>
-              <td class="bg_purple"></td>
+              <td class="bg-purple"></td>
             </tr>
             <tr>
               <td>Zelená</td>
@@ -114,18 +117,20 @@
               <td>Príroda, rast, harmónia, obnova</td>
               <td>Listy, tráva, ekológia</td>
               <td>#00c819</td>
-              <td class="bg_green"></td>
+              <td class="bg-green"></td>
             </tr>
           </tbody>
           <tfoot>
             <tr>
-              <td colspan="6" class="center_text">
+              <td colspan="6" class="center-text">
                 Farby majú silný vplyv na naše vnímanie a emócie. Ich správne použitie môže zlepšiť komunikáciu a dizajn.
               </td>
             </tr>
           </tfoot>
         </table>
-    </article>
+      </article>
+      <aside>placeholder</aside>
+    </div>
 
     <footer>&copy; 2024 Oliver Frič. Všetky práva vyhradené. | Kontakt: 
       <a href="mailto:oliver.fric@student.tuke.sk">Mail</a> | <a href="tel:+421948042567">Tel.</a>

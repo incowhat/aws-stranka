@@ -1,0 +1,175 @@
+.color-shadow {
+  display: inline-block;
+  font-weight: 500;
+  text-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.5);
+  cursor: default;
+}
+
+.red {
+  color: red;
+  transition: all 150ms ease;
+}
+.red:hover {
+  color: white;
+  text-shadow: 0 0 1rem red,
+    0 0 1rem red,
+    0 0 1rem red;
+}
+
+.green {
+  color: rgb(0, 255, 0);
+  transition: all 150ms ease;
+}
+.green:hover {
+  color: white;
+  text-shadow: 0 0 1rem rgb(0, 255, 0),
+    0 0 1rem rgb(0, 255, 0),
+    0 0 1rem rgb(0, 255, 0);
+}
+
+.blue {
+  color: blue;
+  transition: all 150ms ease;
+}
+.blue:hover {
+  color: white;
+  text-shadow: 0 0 1rem blue,
+    0 0 1rem blue,
+    0 0 1rem blue;
+}
+
+.cyan {
+  color: rgb(0, 255, 255);
+  transition: all 150ms ease;
+}
+.cyan:hover {
+  color: white;
+  text-shadow: 0 0 1rem rgb(0, 255, 255),
+    0 0 1rem rgb(0, 255, 255),
+    0 0 1rem rgb(0, 255, 255);
+}
+
+.magenta {
+  color: rgb(255, 0, 255);
+  transition: all 150ms ease;
+}
+.magenta:hover {
+  color: white;
+  text-shadow: 0 0 1rem rgb(255, 0, 255),
+    0 0 1rem rgb(255, 0, 255),
+    0 0 1rem rgb(255, 0, 255);
+}
+
+.yellow {
+  color: rgb(255, 255, 0);
+  transition: all 150ms ease;
+}
+.yellow:hover {
+  color: white;
+  text-shadow: 0 0 1rem rgb(255, 255, 0),
+    0 0 1rem rgb(255, 255, 0),
+    0 0 1rem rgb(255, 255, 0);
+}
+
+.table-a1 {
+  max-width: 80%;
+  display: inline-block;
+  overflow-x: auto;
+  white-space: nowrap;
+  border-collapse: collapse;
+  margin: 1rem 1rem 1rem 0;
+}
+
+.table-a1-head th{
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 0.08rem solid rgba(0, 0, 0, 0.5);
+  font-weight: bold;
+}
+  
+.table-a1-body td{
+  padding: 0.2rem;
+  border: 0.08rem solid rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+
+.bg-red {
+  background-color: rgba(255, 0, 0);
+}
+.bg-orange {
+  background-color: rgba(255, 100, 0);
+}
+.bg-yellow {
+  background-color: rgba(255, 255, 0);
+}
+.bg-blue {
+  background-color: rgba(0, 0, 255);
+}
+.bg-purple {
+  background-color: rgb(123, 0, 255);
+}
+.bg-green {
+  background-color: rgb(0, 200, 25);
+}
+
+.center-text {
+  text-align: center;
+}
+
+.mono {
+  background: linear-gradient(to right,
+      rgb(149, 208, 189) 25%,
+      rgb(100, 155, 139) 25% 50%,
+      rgb(82, 130, 115) 50% 75%,
+      rgb(33, 53, 47) 75%);
+  padding: 3rem;
+}
+
+.analog {
+  background: linear-gradient(to right,
+      rgb(121, 0, 125) 20%,
+      rgb(125, 0, 100) 20% 40%,
+      rgb(125, 0, 75) 40% 60%,
+      rgb(125, 0, 50) 60% 80%,
+      rgb(125, 0, 25) 80%);
+  padding: 3rem;
+}
+
+.complementary {
+  background: linear-gradient(to right,
+      rgb(255, 163, 70) 25%,
+      rgb(255, 138, 21) 25% 50%,
+      rgb(0, 94, 255) 50% 75%,
+      rgb(62, 133, 255) 75%);
+  padding: 3rem;
+}
+
+.colbox-red {
+  background-color: #FF0000;
+  height: 1rem;
+  width: 5rem;
+}
+
+.colbox-blue {
+  background-color: #0000FF;
+  height: 1rem;
+  width: 5rem;
+}
+
+.colbox-yellow {
+  background-color: #FFFF00;
+  height: 1rem;
+  width: 5rem;
+}
+
+.colbox-green {
+  background-color: #008000;
+  height: 1rem;
+  width: 5rem;
+}
+
+.colbox-maroon {
+  background-color: #800000;
+  height: 1rem;
+  width: 5rem;
+}
