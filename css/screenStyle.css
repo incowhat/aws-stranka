@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  min-width: 10rem;
 }
 
 body {
@@ -7,6 +8,7 @@ body {
   flex-direction: column;
   min-height: 100%;
   font-family: "Roboto Mono", Consolas, monospace;
+  font-size: 1rem;
   font-weight: 450;
   margin: 0;
   background-attachment: fixed;
@@ -16,10 +18,10 @@ body {
   background-image: linear-gradient(135deg, rgba(0, 7, 103, 0.515), rgba(0, 255, 0, 0.321));
 }
 .background-writer {
-  background-image: linear-gradient(95deg, rgba(183, 0, 255, 0.2), rgba(206, 225, 0, 0.2));
+  background-image: linear-gradient(95deg, rgba(115, 0, 160, 0.452), rgba(144, 157, 0, 0.291));
 }
 .background-archive {
-  background-image: linear-gradient(115deg, rgba(0, 255, 204, 0.2), rgba(225, 0, 79, 0.2));
+  background-image: linear-gradient(115deg, rgba(0, 194, 155, 0.367), rgba(191, 0, 67, 0.372));
 }
 .background-a1 {
   background-image: linear-gradient(40deg, rgba(21, 0, 255, 0.332), rgba(197, 0, 0, 0.314));
@@ -34,29 +36,23 @@ body {
 .navbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  min-height: 2rem;
+  height: 2rem;
   padding: 1.2rem 1rem;
   background: rgb(0, 0, 0);
+  transition: height 1500ms ease;
 }
-
-.navbar-links a{
-  color: white;
-  /* text-decoration: none; */
-}
-
 
 .header {
-  margin: 0;
-  display: flex;
-  align-items: center;
+  /* literally aby header text bol centered correctly*/
+  font-family: "Press Start 2P", monospace;
 }
 
 .header-text {
+  display: inline-block;
   font-family: "Press Start 2P", monospace;
   font-size: 1.5rem;
   text-align: left;
@@ -65,10 +61,26 @@ body {
   background-clip: text;
   color: transparent;
   text-decoration: none;
+  text-wrap: nowrap;
+}
+
+.navbar-links{
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+.navbar-links a {
+  color: white;
+  /* text-decoration: none; */
+  margin-left: 2%;
 }
 
 main, article {
-  margin: 100px 0px 0px 10px;
+  margin-top: 4rem;
+  padding: 0 1rem;
+  transition: margin 1500ms ease;
 }
 
 footer {
@@ -82,7 +94,7 @@ footer {
 }
 
 
-circle {
+.svgcko circle {
   mix-blend-mode: screen;
 }
 
