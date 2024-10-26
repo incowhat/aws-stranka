@@ -59,7 +59,7 @@ footer {
   font-size: 40%;
 }
 
-ul, ol {
+.color-shadow {
   text-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.5);
   cursor: default;
 }
