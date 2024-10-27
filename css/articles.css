@@ -71,13 +71,20 @@
     0 0 1rem rgb(255, 255, 0);
 }
 
+.table-div {
+  border: 0.2rem solid black;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 0.4rem;
+}
+
 .table-a1 {
-  max-width: 80%;
+  width: 100%;
   display: inline-block;
-  overflow-x: auto;
+  overflow-x: scroll;
   white-space: nowrap;
   border-collapse: collapse;
-  margin: 1rem 1rem 1rem 0;
+  /* margin: 1rem 1rem 1rem 0; */
 }
 
 .table-a1-head th{
@@ -116,31 +123,39 @@
   text-align: center;
 }
 
+.color-preview {
+  width: 100%;
+  margin: 1 1rem;
+}
+.color-preview figure {
+  margin: 0;
+}
+
 .mono {
   background: linear-gradient(to right,
-      rgb(149, 208, 189) 25%,
-      rgb(100, 155, 139) 25% 50%,
-      rgb(82, 130, 115) 50% 75%,
-      rgb(33, 53, 47) 75%);
+    rgb(149, 208, 189) 25%,
+    rgb(100, 155, 139) 25% 50%,
+    rgb(82, 130, 115) 50% 75%,
+    rgb(33, 53, 47) 75%);
   padding: 3rem;
 }
-
+    
 .analog {
   background: linear-gradient(to right,
-      rgb(121, 0, 125) 20%,
-      rgb(125, 0, 100) 20% 40%,
-      rgb(125, 0, 75) 40% 60%,
-      rgb(125, 0, 50) 60% 80%,
-      rgb(125, 0, 25) 80%);
+    rgb(121, 0, 125) 20%,
+    rgb(125, 0, 100) 20% 40%,
+    rgb(125, 0, 75) 40% 60%,
+    rgb(125, 0, 50) 60% 80%,
+    rgb(125, 0, 25) 80%);
   padding: 3rem;
 }
-
+    
 .complementary {
   background: linear-gradient(to right,
-      rgb(255, 163, 70) 25%,
-      rgb(255, 138, 21) 25% 50%,
-      rgb(0, 94, 255) 50% 75%,
-      rgb(62, 133, 255) 75%);
+    rgb(255, 163, 70) 25%,
+    rgb(255, 138, 21) 25% 50%,
+    rgb(0, 94, 255) 50% 75%,
+    rgb(62, 133, 255) 75%);
   padding: 3rem;
 }
 
