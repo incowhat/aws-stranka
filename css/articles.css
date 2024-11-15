@@ -71,9 +71,11 @@
     0 0 1rem rgb(255, 255, 0);
 }
 
+
 .table-div {
   border: 0.2rem solid black;
-  width: 100%;
+  width: calc(100vw - 3rem);
+  max-width: 77.27rem;
   margin-bottom: 1rem;
   border-radius: 0.4rem;
 }
@@ -84,7 +86,6 @@
   overflow-x: scroll;
   white-space: nowrap;
   border-collapse: collapse;
-  /* margin: 1rem 1rem 1rem 0; */
 }
 
 .table-a1-head th{

@@ -11,17 +11,26 @@ body {
   font-size: 1rem;
   font-weight: 450;
   margin: 0;
-  background-attachment: fixed;
+}
+
+.background {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  /* background-attachment: fixed; */
+  z-index: -100;
+  filter:blur();
+  /* prazdny blur somehow fixne kus banding */
 }
 
 .background-index {
   background-image: linear-gradient(135deg, rgba(0, 7, 103, 0.515), rgba(0, 255, 0, 0.321));
 }
 .background-writer {
-  background-image: linear-gradient(95deg, rgba(115, 0, 160, 0.452), rgba(144, 157, 0, 0.291));
+  background-image: linear-gradient(135deg, rgba(115, 0, 160, 0.452), rgba(144, 157, 0, 0.491));
 }
 .background-archive {
-  background-image: linear-gradient(115deg, rgba(0, 194, 155, 0.367), rgba(191, 0, 67, 0.372));
+  background-image: linear-gradient(115deg, rgba(0, 160, 128, 0.522), rgba(151, 0, 53, 0.486));
 }
 .background-a1 {
   background-image: linear-gradient(40deg, rgba(21, 0, 255, 0.332), rgba(197, 0, 0, 0.314));
@@ -42,8 +51,9 @@ body {
   right: 0;
   height: 2rem;
   padding: 1.2rem 1rem;
-  background: rgb(0, 0, 0);
+  background: rgb(0, 0, 0, 0.8);
   transition: height 200ms ease;
+  backdrop-filter: blur(0.5rem);
 }
 
 .header {
@@ -62,10 +72,10 @@ body {
   color: transparent;
   text-decoration: none;
   text-wrap: nowrap;
-  animation: gradient-shift 5s infinite linear;
 }
 .header-text:hover {
   animation: rainbow 1000ms infinite;
+  
 }
 @keyframes rainbow {
   0% {
@@ -166,6 +176,10 @@ footer {
   margin-top: auto;
 }
 
+.svgcko {
+  isolation: isolate;
+}
+
 .svgcko circle {
   mix-blend-mode: screen;
 }
@@ -181,6 +195,7 @@ footer {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-duration: 100ms;
+  animation-fill-mode: forwards;
 }
 @keyframes rotator {
   from {
