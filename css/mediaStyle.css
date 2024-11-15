@@ -1,4 +1,4 @@
-@media only screen and (max-width: 36rem) {
+@media only screen and (max-width: 38rem) {
   .navbar {
     height: 4rem;
   }
@@ -19,16 +19,22 @@
     margin-top: 6.4rem;
   }
 
-  .content-grid aside {
-    display: none;
+  .resizeable {
+    flex-direction: column;
+    padding: 0 0.4rem;
+    margin: 0;
   }
 }
 
-@media only screen and (min-width:36.001rem) and (max-width: 62rem) {
+@media only screen and (min-width:38.001rem) and (max-width: 62rem) {
   .content-grid {
-    grid-template-columns: 1fr 34rem 1fr;
+    grid-template-columns: 100%;
   }
   .navbar-links a {
     margin-left: 0.6rem;
+  }
+
+  aside {
+    min-width: 10rem;
   }
 }

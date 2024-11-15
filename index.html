@@ -7,10 +7,13 @@
     <link rel="stylesheet" href="css/screenStyle.css">
     <link rel="stylesheet" href="css/mediaStyle.css">
     <link rel="stylesheet" href="css/printStyle.css" media="print">
+    <link rel="stylesheet" href="css/articles.css">
+    <link rel="stylesheet" href="css/form.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
     <link rel="icon" href="img/favicon.svg" type="image/x-icon">
+    <script src="js/stuff.js" async></script>
     <title>AWT Stranka - Farby</title>
   </head>
 
@@ -48,7 +51,58 @@
         </svg>
         <p>Toto je svgčko</p>
       </main>
-      <aside>placeholder</aside>
+      <aside>
+        <button class="button-form" onclick="openForm()">
+          Feedback
+        </button>
+      </aside>
+      <div class="form-div", id="form-div">
+        <div class="form-main">
+          <div class="form-header">
+            <h2 class="header-text form-h2">Feedback</h2>
+            <button onclick="openForm()">Späť</button>
+          </div>
+          <form class="form-form">
+            <span class="resizeable form-name">
+              <label>Meno:</label>
+              <input class="input" placeholder="•ᴗ•" type="text" name="name" id="name" maxlength="30" spellcheck="true" lang="sk" autocomplete="on" title="max 30 char" required>
+            </span>
+            <span class="resizeable form-email">
+              <label>Email:</label>
+              <input class="input" placeholder="⬚@⬚.⬚" type="email" name="email" id="email" maxlength="50" spellcheck="true" lang="sk" autocomplete="on" title="max 50 char" required>
+            </span>
+            <span class="resizeable form-url">
+              <label>Obrázok:</label>
+              <input class="input" placeholder="https://incowhat.github.io/awt-stranka/img/color_wheel480.png" type="url" name="email" id="email" maxlength="50" spellcheck="true" lang="sk" autocomplete="on" title="url obrázku, ktorý doplňuje vašu spätnú väzbu">
+            </span>
+            <span class="form-text">
+              <label>Spätná väzba:</label>
+              <textarea class="input" name="text" id="text" wrap="soft" placeholder="Teext" rows="3" required></textarea>
+            </span>
+              <label>Najlepšia primárna farba?</label>
+              <div class="radios">
+                <input type="radio" name="rating" id="red">
+                <label for="red" class="red">Červená</label>
+                <input type="radio" name="rating" id="green">
+                <label for="green" class="green">Zelená</label>
+                <input type="radio" name="rating" id="blue">
+                <label for="blue" class="blue">Modrá</label>
+              </div>
+            </span>
+            <span class="boilerplate">
+              <label>GDPR alebo tak dačo:</label>
+              <div>
+              <input type="checkbox" name="gdpr" id="gdpr" required>
+              <label for="gdpr" class="long-text">Potrvdením tohoto checkboxu vyjadrujem svoj neochvejný súhlas so spracovaním mojich osobných údajov, ktoré sú v tomto formulári uvedené v plnom rozsahu a bez akejkoľvek výhrady. Beriem na vedomie, že tento súhlas je platný až do odvolania, alebo do doby, kým ma neunaví čítať tieto dlhé a zbytočne formálne (mali byť ešte o niečo dlhšie ale gemini mi nedávalo veľa možností, a nechcelo sa mi do toho ďalej písať) vety. Odoslaním formulára naďalej potvrdzujem, že som si prečítal/a celý tento text.</label>
+              </div>
+            </span>
+            <div>
+              <input type="reset" value="Reset">
+              <input type="submit">
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
     
     <footer>&copy; 2024 Oliver Frič. Všetky práva vyhradené.

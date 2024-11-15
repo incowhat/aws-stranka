@@ -55,7 +55,7 @@ body {
   padding: 1.2rem 1rem;
   background: rgb(0, 0, 0, 0.8);
   transition: height 200ms ease;
-  backdrop-filter: blur(0.5rem);
+  backdrop-filter: blur(0.4rem);
 }
 
 .header {
@@ -74,9 +74,13 @@ body {
   color: transparent;
   text-decoration: none;
   text-wrap: nowrap;
+  animation: rainbow 1000ms infinite;
+  animation-fill-mode: forwards;
+  animation-play-state: paused;
 }
 .header-text:hover {
   animation: rainbow 1000ms infinite;
+  animation-fill-mode: forwards;
   
 }
 @keyframes rainbow {
@@ -180,6 +184,12 @@ footer {
 
 .svgcko {
   isolation: isolate;
+  animation-name: rotator;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 3s;
+  animation-play-state: paused;
+  animation-fill-mode: forwards;
 }
 
 .svgcko circle {
@@ -191,6 +201,9 @@ footer {
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-duration: 3s;
+  animation-fill-mode: forwards;
+  animation-play-state: running;
+  transition: all 1000ms ease;
 }
 .svgcko:active {
   animation-name: rotator;
@@ -206,4 +219,11 @@ footer {
   to {
     transform: rotate(360deg);
   }
+}
+
+.button-form {
+  font-family: "Roboto Mono", Consolas, monospace;
+  font-size: 1rem;
+  font-weight: 450;
+  margin: 1rem;
 }
