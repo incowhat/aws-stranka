@@ -73,17 +73,17 @@ function validateForm() {
     }
     
     radioGroup.classList.add('unrequired');
-    var radioValid = false;
+    // var radioValid = false;
     for (const radioButton of radioButtons) {
         if (radioButton.checked) {
             radioGroup.classList.remove('unrequired');
             radioGroup.classList.add('good');
             console.log("test");
-            radioValid = true;
+            // radioValid = true;
             break;
         }
     }
-    isvalid = isvalid && radioValid
+    // isvalid = isvalid && radioValid
 
     if (gdprInput[0].checked) {
         gdprDiv.classList.remove('required');
@@ -121,3 +121,24 @@ function resetForm() {
     const legend = document.getElementById('legend');
     legend.classList.remove('legend-show');
 }
+
+function toggleDarkMode() {
+    const isDarkMode = localStorage.getItem('isDarkMode') === 'true';
+    const root = document.documentElement;
+  
+    if (isDarkMode) {
+      root.removeAttribute('data-color-scheme');
+      localStorage.setItem('isDarkMode', 'false');
+    } else {
+        root.setAttribute('data-color-scheme', 'dark');
+        localStorage.setItem('isDarkMode', 'true');
+    }
+}
+  
+    // Initial check for the user's preferred color scheme
+window.onload = () => {
+    const isDarkMode = localStorage.getItem('isDarkMode') === 'true';
+    if (isDarkMode) {
+      document.documentElement.setAttribute('data-color-scheme', 'dark');
+    }
+};

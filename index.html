@@ -55,6 +55,9 @@
         <button class="button-form" onclick="openForm()">
           Feedback
         </button>
+        <button class="button-form" onclick="toggleDarkMode()">
+          Color scheme
+        </button>
       </aside>
       <div class="form-div", id="form-div">
         <div class="magic">
@@ -97,13 +100,13 @@
                 <datalist id="keywordSuggestions">
                   <option value="Farby">
                   <option value="Blog">
-                  <option value="zadanie">
+                  <option value="Zadanie">
                   <option value="Červená">
                   <option value="Zelená">
                   <option value="Modrá">
                 </datalist>
                 <span class="boilerplate">
-                  <label>GDPR alebo tak dačo:</label>
+                  <label>GDPR alebo take dačo:</label>
                   <div class="gdpr-div" id="gdpr-div">
                     <input type="checkbox" name="gdpr" id="gdpr" required>
                     <label for="gdpr">Potrvdením tohoto checkboxu vyjadrujem svoj neochvejný súhlas so spracovaním mojich osobných údajov, ktoré sú v tomto formulári uvedené v plnom rozsahu a bez akejkoľvek výhrady. Beriem na vedomie, že tento súhlas je platný až do odvolania, alebo do doby, kým ma neunaví čítať tieto dlhé a zbytočne formálne vety (mali byť ešte o niečo dlhšie ale gemini mi nedávalo veľa možností, a nechcelo sa mi do toho ďalej písať). Odoslaním formulára naďalej potvrdzujem, že som si prečítal/a celý tento text.</label>
@@ -117,9 +120,9 @@
                   <label>Legenda (pre validáciu):</label>
                   <span class="legend-list">
                     <label class="greenyellow">All good</label>
-                    <label class="red">Required</label>
-                    <label class="mediumblue">Invalid</label>
-                    <label class="darkseagreen">No need, no worries</label>
+                    <label class="redd">Required</label>
+                    <label class="darkorchid">Invalid</label>
+                    <label class="mediumturquoise">No need, no worries</label>
                   </span>
                 </div>
               </form>
