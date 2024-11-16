@@ -52,7 +52,6 @@ function validateForm() {
         urlInput.classList.remove('good');
         urlInput.classList.remove('invalid');
         urlInput.classList.add('unrequired');
-        isvalid = false;
     } else if (!urlRegex.test(urlInput.value.trim())) {
         urlInput.classList.remove('good');
         urlInput.classList.remove('unrequired');
@@ -74,14 +73,17 @@ function validateForm() {
     }
     
     radioGroup.classList.add('unrequired');
+    var radioValid = false;
     for (const radioButton of radioButtons) {
         if (radioButton.checked) {
             radioGroup.classList.remove('unrequired');
             radioGroup.classList.add('good');
             console.log("test");
+            radioValid = true;
             break;
         }
     }
+    isvalid = isvalid && radioValid
 
     if (gdprInput[0].checked) {
         gdprDiv.classList.remove('required');
@@ -89,7 +91,7 @@ function validateForm() {
     } else {
         gdprDiv.classList.remove('good');
         gdprDiv.classList.add('required');
-
+        isvalid = false;
     }
     
     return isvalid;
