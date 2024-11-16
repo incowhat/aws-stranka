@@ -1,7 +1,9 @@
-function openForm() {
+function toggleForm() {
     let element = document.getElementById("form-div");
+    let element2 = document.getElementById("form-background");
     let body = document.getElementById("body");
     element.classList.toggle("open-form");
+    element2.classList.toggle("open-form");
     body.classList.toggle("open-form-body");
 }
 

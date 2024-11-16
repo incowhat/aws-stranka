@@ -2,8 +2,6 @@
   opacity: 0;
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(2rem);
   background-repeat: no-repeat;
   background-position: center;
   pointer-events: none;
@@ -13,10 +11,6 @@
   transition: all 500ms ease;
   /* background-color: greenyellow; */
 }
-[data-color-scheme="dark"] .form-div {
-  background-color: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(4rem);
-}
 
 .open-form {
   opacity: 1;
@@ -25,6 +19,21 @@
 }
 .open-form-body {
   overflow: hidden;
+}
+
+.form-background {
+  position: fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
+  background-attachment: fixed;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(2rem);
+}
+[data-color-scheme="dark"] .form-background {
+  background-color: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4rem);
 }
 
 .magic {

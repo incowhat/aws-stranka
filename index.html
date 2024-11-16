@@ -55,18 +55,19 @@
         <button class="button-form" onclick="toggleDarkMode()">
           Color scheme
         </button>
-        <button class="button-form" onclick="openForm()">
+        <button class="button-form" onclick="toggleForm()">
           Feedback
         </button>
       </aside>
-      <div class="form-div", id="form-div">
+      <div class="form-div form-background" id="form-background"></div>
+      <div class="form-div" id="form-div">
         <div class="magic">
           <div class="empty"></div>
           <div class="imgoincrazy">
             <div class="form-main" id="form-main">
               <div class="form-header">
                 <h2 class="header-text form-h2">Feedback</h2>
-                <button onclick="openForm()">Späť</button>
+                <button onclick="toggleForm()">Späť</button>
               </div>
               <form class="form-form" onsubmit="return validateForm()" novalidate>
                 <span class="resizeable form-name">
