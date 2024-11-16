@@ -63,9 +63,12 @@ body {
   right: 0;
   height: 2rem;
   padding: 1.2rem 1rem;
-  background: rgb(0, 0, 0, 0.75);
+  background: rgb(0, 0, 0, 0.8);
   transition: height 200ms ease;
   backdrop-filter: blur(0.4rem);
+}
+[data-color-scheme="dark"] .navbar {
+  background: rgb(0, 0, 0, 0.6);
 }
 
 .header {
@@ -191,8 +194,11 @@ footer {
   padding: 10px;
   font-size: 80%;
   font-family: Arial, sans-serif;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.6);
   margin-top: auto;
+}
+[data-color-scheme="dark"] footer {
+  color: rgba(200, 200, 200, 0.8);
 }
 
 .svgcko {
