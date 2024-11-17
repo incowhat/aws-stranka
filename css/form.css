@@ -1,4 +1,4 @@
-.form-div {
+.form-div{
   opacity: 0;
   position: fixed;
   inset: 0;
@@ -137,10 +137,10 @@
 }
 .input:hover{
   border: solid 0.1rem rgb(110, 110, 110);
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 .input:focus {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
   border: solid 0.1rem rgb(100, 100, 100);
 }
 
@@ -169,14 +169,26 @@
   max-width: 90vw;
   min-width: 8rem;
 }
+.form-keywords {
+  flex-direction: column;
+  padding: 0 0.4rem;
+  width: 20ex;
+}
 
 .radios {
   display: grid;
   grid-template-columns: auto auto;
-  margin-bottom: 1rem;
   border: 0.1rem solid;
   border-radius: 0.5rem;
   border-color: transparent;
+  background-color: rgba(100, 100, 100, 0.5);
+  padding: 0.2rem;
+  padding-top: 0.1rem;
+  margin-top: 0.2rem;
+  transition: all 200ms ease;
+}
+.radios:hover {
+  background-color: rgba(100, 100, 100, 0.2);
 }
 .radios label,
 .radios input{
@@ -212,15 +224,29 @@
   color: rgb(150, 150, 150);
 }
 
+.gdpr-text:hover {
+  color: rgba(150, 150, 150, 0.8);
+}
+
 .legend {
-  height: 0;
   opacity: 0;
-  margin-top: 1.4rem;
-  transition: all 200ms ease;
+  transform: scale(1, 0);
+  pointer-events: none;
+  height: 0;
+  margin-top: 0rem;
+  transition: height 200ms ease, opacity 200ms ease, transform 0ms;
 }
 .legend-show {
-  /* height: 5rem; */
+  margin-top: 0.8rem;
+  pointer-events: all;
+  transform: scale(1, 1);
+  height: fit-content;
   opacity: 1;
+}
+.legend-hide {
+  opacity: 0;
+  transform: scale(1, 0);
+  transition: all 200ms ease;
 }
 
 .legend-list {
@@ -266,4 +292,63 @@
 .mediumturquoise {
   border-color: mediumturquoise;
   color: mediumturquoise;
+}
+
+.library {
+  /* background-color: aqua; */
+}
+
+.library-collection {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  font-family: "Roboto Mono", Consolas, monospace;
+  font-size: 1rem;
+  font-weight: 450;
+  color: ghostwhite;
+  margin: 0;
+}
+
+.l-opinion {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+  padding: 0 1rem;
+  margin-top: 1rem;
+}
+
+.l-opinion-h {
+  display: flex;
+  justify-content: space-between;
+}
+
+.l-name {
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+}
+.l-mail {
+  margin-top: 0.2rem;
+  margin-bottom: 0;
+}
+.l-time {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  text-align: end;
+}
+.l-text {
+  text-wrap: pretty;
+  font-weight: 350;
+  color: lightgray;
+}
+/* .l-url {
+  margin-bottom: 1rem;
+} */
+.l-img {
+  max-width: 20rem;
+  width: 50vw;
+  align-self: center;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
 }

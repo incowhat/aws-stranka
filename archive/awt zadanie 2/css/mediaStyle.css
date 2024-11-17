@@ -1,0 +1,34 @@
+@media only screen and (max-width: 36rem) {
+  .navbar {
+    height: 4rem;
+  }
+
+  .header-text {
+    text-wrap: wrap;
+    text-align: center;
+    width: 5em;
+  }
+  
+  .navbar-links {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .content-grid {
+    grid-template-columns: 100%;
+    margin-top: 6.4rem;
+  }
+
+  .content-grid aside {
+    display: none;
+  }
+}
+
+@media only screen and (min-width:36.001rem) and (max-width: 62rem) {
+  .content-grid {
+    grid-template-columns: 1fr 34rem 1fr;
+  }
+  .navbar-links a {
+    margin-left: 0.6rem;
+  }
+}
