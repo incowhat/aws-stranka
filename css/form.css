@@ -294,10 +294,6 @@
   color: mediumturquoise;
 }
 
-.library {
-  /* background-color: aqua; */
-}
-
 .library-collection {
   display: flex;
   flex-direction: column;

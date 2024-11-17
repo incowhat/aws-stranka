@@ -39,6 +39,7 @@ function processFormData() {
         newOpinion[element.name] = element.value;
       }
     }
+    newOpinion['color'] = newOpinion['color'] || '';
     newOpinion['submitted'] = new Date().toLocaleString("sk-SK");
   
     // checknutie newOpinion v konzole
