@@ -31,7 +31,7 @@ body {
   height: 100vh;
   /* background-attachment: fixed; */
   z-index: -100;
-  filter:blur();
+  filter: blur(0.001rem);
   /* prazdny blur somehow fixne kus banding */
 }
 
