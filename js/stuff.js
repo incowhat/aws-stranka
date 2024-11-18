@@ -1,5 +1,3 @@
-// import { renderOpinions } from "/opinionsHandlerMustache.js";
-
 function toggleForm() {
     let element = document.getElementById("form-div");
     let element2 = document.getElementById("form-background");
