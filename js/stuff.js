@@ -213,7 +213,10 @@ function toggleDarkMode() {
 // Initial check for the user's preferred color scheme
 window.onload = () => {
     const DarkModeOn = localStorage.getItem('DarkModeOn') === 'true';
-    if (DarkModeOn || window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    if (localStorage.getItem('DarkModeOn') === null) {
+        DarkModeOn = window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+    if (DarkModeOn) {
         document.documentElement.setAttribute('data-color-scheme', 'dark');
         localStorage.setItem('DarkModeOn', 'true');
     }
