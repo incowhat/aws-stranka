@@ -1,0 +1,40 @@
+@media only screen and (max-width: 38rem) {
+  .navbar {
+    height: 4rem;
+  }
+
+  .header-text {
+    text-wrap: wrap;
+    text-align: center;
+    width: 5em;
+  }
+  
+  .navbar-links {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .content-grid {
+    grid-template-columns: 100%;
+    margin-top: 6.4rem;
+  }
+  .content-grid aside {
+    align-items: center;
+  }
+}
+
+@media only screen and (min-width:38.001rem) and (max-width: 62rem) {
+  .content-grid {
+    grid-template-columns: 100%;
+  }
+  .navbar-links a {
+    margin-left: 0.6rem;
+  }
+  
+  /* aside {
+    min-width: 10rem;
+  } */
+  .content-grid aside {
+    align-items: center;
+  }
+}

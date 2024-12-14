@@ -1,9 +1,24 @@
-function renderOpinions() {
-    const opinions = JSON.parse(localStorage.getItem("opinions")) || [];
-    const opinionTemplate = document.getElementById('mustache-template').innerHTML;
-    const container = document.getElementById('mustache-container');
+async function renderOpinions() {
+    // var template
+    // try {
+    //     // console.log("Fetching template from:", templatePath);
+    //     const response = await fetch('templates/form.html');
+    //     if (!response.ok) {
+    //         throw new Error(`HTTP error! status: ${response.status}`);
+    //     }
+    //     template = await response.text();
+    // } catch (error) {
+    //     console.error("Error loading template:", error);
+    //     return "<p>Error loading template</p>";
+    // }
 
-    const renderedHtml = opinions.map(opinion => Mustache.render(opinionTemplate, opinion)).join('');
+    const opinions = JSON.parse(localStorage.getItem("opinions")) || [];
+    const container = document.getElementById('mustache-container');
+    const template = document.getElementById('mustache-template').innerHTML
+
+    console.log(template)
+
+    const renderedHtml = opinions.map(opinion => Mustache.render(template, opinion)).join('');
     container.innerHTML = renderedHtml;
 }
 

@@ -1,0 +1,64 @@
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto Serif", sans-serif;
+  font-size: 1rem;
+  font-weight: 450;
+  margin-top: -1rem;
+  background-color: transparent;
+  color: black;
+}
+
+.navbar {
+  background-color: transparent;
+  padding: 2rem;
+}
+.header-text {
+  color: black;
+  background-color: transparent;
+}
+.navbar-links {
+  display: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+article {
+  color: black;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+span {
+  text-shadow: 0 0 0;
+}
+
+footer {
+  font-family: "Roboto Serif", sans-serif;
+  background-color: transparent;
+}
+
+footer a {
+  display: none;
+}
+
+.table-div {
+  border: 0.1rem solid black;
+  width: 100%;
+  margin-bottom: 1rem;
+  border-radius: 0.4rem;
+}
+
+.table-a1 {
+  width: 100%;
+  display: inline-block;
+  overflow-x: auto;
+  white-space: wrap;
+  border-collapse: collapse;
+}
+
+.color-column {
+  display: none;
+}

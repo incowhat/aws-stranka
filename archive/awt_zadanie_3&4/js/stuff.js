@@ -1,9 +1,6 @@
+// import { renderOpinions } from "/opinionsHandlerMustache.js";
+
 function toggleForm() {
-    if (window.location.hash == "#welcome") {
-        history.pushState(null, "", "#addOpinion");
-    } else {
-        history.pushState(null, "", "#welcome");
-    }
     let element = document.getElementById("form-div");
     let element2 = document.getElementById("form-background");
     let body = document.getElementById("body");
@@ -13,21 +10,13 @@ function toggleForm() {
 }
 
 function toggleFormLib() {
-    if (window.location.hash == "#welcome") {
-        history.pushState(null, "", "#opinions");
-        console.log("RENDERING opinions")
-        renderOpinions();
-    } else {
-        history.pushState(null, "", "#welcome");
-    }
     let element = document.getElementById("form-lib-div");
     let element2 = document.getElementById("form-background");
     let body = document.getElementById("body");
     element.classList.toggle("open-form");
     element2.classList.toggle("open-form");
     body.classList.toggle("open-form-body");
-    // if (window.location.hash == "#opinions") {
-    // }
+    renderOpinions();
 }
 
 function processFormData() {
@@ -64,8 +53,7 @@ function processFormData() {
 
     // test
     console.log(opinions);
-    event.preventDefault();
-    window.location.hash = "opinions";
+    // event.preventDefault();
 }
 
 function validateForm() {
@@ -148,7 +136,7 @@ function validateForm() {
         if (radioButton.checked) {
             radioGroup.classList.remove('unrequired');
             radioGroup.classList.add('good');
-            // console.log("test");
+            console.log("test");
             // radioValid = true;
             break;
         }
@@ -225,10 +213,7 @@ function toggleDarkMode() {
 // Initial check for the user's preferred color scheme
 window.onload = () => {
     const DarkModeOn = localStorage.getItem('DarkModeOn') === 'true';
-    if (localStorage.getItem('DarkModeOn') === null) {
-        DarkModeOn = window.matchMedia('(prefers-color-scheme: dark)').matches
-    }
-    if (DarkModeOn) {
+    if (DarkModeOn || window.matchMedia('(prefers-color-scheme: dark)').matches) {
         document.documentElement.setAttribute('data-color-scheme', 'dark');
         localStorage.setItem('DarkModeOn', 'true');
     }

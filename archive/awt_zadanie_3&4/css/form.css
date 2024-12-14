@@ -1,4 +1,4 @@
-.form-div {
+.form-div{
   opacity: 0;
   position: fixed;
   inset: 0;
@@ -115,7 +115,7 @@
   align-items: center;
   resize: horizontal;
   overflow-x: hidden;
-  max-width: 100%;
+  max-width: 90vw;
   min-width: 8rem;
   margin-top: 1rem;
 }
@@ -347,9 +347,4 @@
   align-self: center;
   margin-bottom: 1rem;
   border-radius: 0.5rem;
-}
-
-.articles-piece {
-  display: flex;
-  flex-direction: column;
 }

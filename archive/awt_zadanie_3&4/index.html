@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="description" content="Website being made as an assignment fow AWS class [FEI TUKE]">
+    <link rel="stylesheet" href="css/screenStyle.css">
+    <link rel="stylesheet" href="css/mediaStyle.css">
+    <link rel="stylesheet" href="css/printStyle.css" media="print">
+    <link rel="stylesheet" href="css/articles.css">
+    <link rel="stylesheet" href="css/form.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/favicon.svg" type="image/x-icon">
+    <script src="js/stuff.js" async></script>
+    <script src="js/opinionsHandlerMustache.js" async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.1/mustache.js" integrity="sha512-IDcWx4i9cyu+HgDbPzY7fKV9aOh0Skt1iFFTZype6N1c/Slqwum0UaGX/Ek2ZSS+RNoaGvtGsTPiSVNfMKaffg==" crossorigin="anonymous" referrerpolicy="no-referrer" async></script>
+    <title>AWT Stranka - Farby</title>
+  </head>
+
+  <body id="body">
+    <div class="background background-index"></div>
+    <nav class="navbar">
+      <header class="header">
+        <a class="header-text" href="index.html">Farby & stuff</a>
+      </header>
+      <div class="navbar-links">
+        <a href="javascript:history.back()" class="navbar-back">Späť</a>
+        <a href="writer.html">O writerovi</a>
+        <a href="archive.html">Archív</a>
+      </div>
+    </nav>
+
+    <div class="content-grid">
+      <aside>placeholder</aside>
+      <main id="main">
+        <p>Vitaj v blogu o svete farieb <em>(o farbách)</em>. Farby ovplyvňujú náš život viac, než si myslíme. Tento blog ťa pozýva na objavnú cestu do sveta farieb, ktorá vznikla ako súčasť môjho školského projektu.</p>
+        <p><em>Väčšina textu v tomto blogu je AI generovaná. Lenivosť nadovšetko, anyway, text písaný ručne bude takto diferencovaný od ostatného textu. To však neznamená, že všetok text je generovaný, mnoho textu aj po vygenerovaní trebalo prepísať/opraviť.</em></p>
+      
+        <h2>Články:</h2>
+        <ul>
+          <li><a href="article1.html">Úvod do farieb</a></li>
+          <li><a href="article2.html">Farebné schémy</a></li>
+          <li><a href="article3.html">Zaujímavé farby</a></li>
+        </ul>
+        <svg width="200" height="200" class="svgcko">
+          <!-- vyska trojuholnika je 51.96 => (70+52) = 122 -->
+          <!-- vsetky y su +13 aby to cele bolo centered -->
+          <circle cx="70" cy="83" r="60" fill="#ff0000"/>
+          <circle cx="100" cy="135" r="60" fill="#00ff00"/>
+          <circle cx="130" cy="83" r="60" fill="#0000ff"/>
+        </svg>
+        <p>Toto je svgčko</p>
+      </main>
+      <aside>
+        <button class="button-form" onclick="toggleDarkMode()">
+          Color scheme
+        </button>
+        <button class="button-form" onclick="toggleForm()">
+          Feedback
+        </button>
+        <button class="button-form" onclick="toggleFormLib()">
+          Feedback Library
+        </button>
+      </aside>
+      <div class="form-div form-background" id="form-background"></div>
+      <div class="form-div" id="form-div">
+        <div class="magic" id="magic">
+          <div class="empty"></div>
+          <div class="imgoincrazy">
+            <div class="form-main" id="form-main">
+              <div class="form-header">
+                <h2 class="header-text form-h2">Feedback</h2>
+                <button onclick="toggleForm()">Späť</button>
+              </div>
+              <form class="form-form" onsubmit="return validateForm()" novalidate>
+                <span class="resizeable form-name">
+                  <label>Meno:</label>
+                  <input class="input" placeholder="•ᴗ•" type="text" name="name" id="name" maxlength="30" spellcheck="true" lang="sk" autocomplete="on" title="Max 30 char" required>
+                </span>
+                <span class="resizeable form-email">
+                  <label>Email:</label>
+                  <input class="input" placeholder="⬚@⬚.⬚" type="email" name="email" id="email" maxlength="50" spellcheck="true" lang="sk" autocomplete="on" title="Max 50 char" required>
+                </span>
+                <span class="resizeable form-url">
+                  <label>Obrázok:</label>
+                  <input class="input" placeholder="https://incowhat.github.io/awt-stranka/img/color_wheel480.png" type="url" name="url" id="url" maxlength="200" spellcheck="true" lang="sk" autocomplete="on" title="Tu vložte url obrázku, ktorý doplňuje vašu spätnú väzbu">
+                </span>
+                <span class="form-text">
+                  <label>Spätná väzba:</label>
+                  <textarea class="input" name="text" id="text" wrap="soft" placeholder="Teext" rows="3" maxlength="500" spellcheck="true" lang="sk" autocomplete="on" title="Tu napíšte vašu spätnú väzbu (max 500 char)" required></textarea>
+                </span>
+                <label>Najlepšia primárna farba?</label>
+                <div class="radios" id="radios">
+                  <input type="radio" name="color" id="red">
+                  <label for="red" class="red">Červená</label>
+                  <input type="radio" name="color" id="green">
+                  <label for="green" class="green">Zelená</label>
+                  <input type="radio" name="color" id="blue">
+                  <label for="blue" class="blue">Modrá</label>
+                </div>
+                <span class="resizeable form-keywords">
+                  <label for="keywords">Kľúčové slová:</label>
+                  <input type="text" id="keywords" list="keywordSuggestions" placeholder="Zadajte kľúčové slová" class="input" name="keywords">
+                  <datalist id="keywordSuggestions">
+                    <option value="Farby">
+                    <option value="Blog">
+                    <option value="Zadanie">
+                    <option value="Farba">
+                    <option value="Stránka">
+                    <option value="Články">
+                  </datalist>
+                </span>
+                <div class="boilerplate">
+                  <label>GDPR alebo take dačo:</label>
+                  <div class="gdpr-div" id="gdpr-div">
+                    <input type="checkbox" name="gdpr" id="gdpr" required>
+                    <label for="gdpr" class="gdpr-text">Potrvdením tohoto checkboxu vyjadrujem svoj neochvejný súhlas so spracovaním mojich osobných údajov, ktoré sú v tomto formulári uvedené v plnom rozsahu a bez akejkoľvek výhrady. Beriem na vedomie, že tento súhlas je platný až do odvolania, alebo do doby, kým ma neunaví čítať tieto dlhé a zbytočne formálne vety (mali byť ešte o niečo dlhšie ale gemini mi nedávalo veľa možností, a nechcelo sa mi do toho ďalej písať). Odoslaním formulára naďalej potvrdzujem, že som si prečítal/a celý tento text.</label>
+                  </div>
+                </div>
+                <div>
+                  <input type="reset" onclick="resetForm()">
+                  <input type="submit">
+                </div>
+                <div class="legend" id="legend">
+                  <label>Legenda (pre validáciu):</label>
+                  <span class="legend-list">
+                    <label class="greenyellow">All good</label>
+                    <label class="redd">Required</label>
+                    <label class="darkorchid">Invalid</label>
+                    <label class="mediumturquoise">No need, no worries</label>
+                  </span>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="empty"></div>
+        </div>
+      </div>
+      <div class="form-div" id="form-lib-div">
+        <div class="magic" id="lib-magic">
+          <div class="empty"></div>
+          <div class="imgoincrazy">
+            <div class="form-main library" id="form-lib-main">
+              <div class="form-header">
+                <h2 class="header-text form-h2">Opinions</h2>
+                <button onclick="toggleFormLib()">Späť</button>
+              </div>
+              <template id="mustache-template">
+                <div class="l-opinion">
+                  <div class="l-opinion-h">
+                    <div class="l-o-h-2">
+                      <p class="l-name {{color}}">{{name}}</p>
+                      <p class="l-mail">{{email}}</p>
+                    </div>
+                    <p class="l-time">{{submitted}}</p>
+                  </div>
+                  <p class="l-text">{{text}}</p>
+                  {{#url}}
+                    <!-- <a class="l-url" href="{{url}}" target="_blank">Link na obrazok</a> -->
+                    <img class="l-img" src="{{url}}" alt="Priložený obrázok">
+                  {{/url}}
+                </div>
+              </template>
+              <div class="library-collection" id="mustache-container"></div>
+            </div>
+          </div>
+          <div class="empty"></div>
+        </div>
+      </div>
+    </div>
+    
+    <footer>&copy; 2024 Oliver Frič. Všetky práva vyhradené.
+      <a href="mailto:oliver.fric@student.tuke.sk" target="_blank">Mail</a> | <a href="tel:+421948042567" target="_blank">Tel.</a> | <a href="../../#archive">exit</a>
+    </footer>
+  </body>
+</html>

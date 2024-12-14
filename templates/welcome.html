@@ -1,0 +1,145 @@
+<div>
+  <div class="background background-index"></div>
+  
+  <div class="content-grid">
+    <aside>placeholder</aside>
+    <main class="content-main">
+      <p>Vitaj v blogu o svete farieb <em>(o farbách)</em>. Farby ovplyvňujú náš život viac, než si myslíme. Tento blog ťa pozýva na objavnú cestu do sveta farieb, ktorá vznikla ako súčasť môjho školského projektu.</p>
+      <p><em>Väčšina textu v tomto blogu je AI generovaná. Lenivosť nadovšetko, anyway, text písaný ručne bude takto diferencovaný od ostatného textu. To však neznamená, že všetok text je generovaný, mnoho textu aj po vygenerovaní trebalo prepísať/opraviť.</em></p>
+  
+      <div class="welcome-text">
+        <h2>Originálne články</h2>
+        <a href="#original-article1">Úvod do farieb</a>
+        <a href="#original-article2">Farebné schémy</a>
+        <a href="#original-article3">Zaujímavé farby</a>
+        <h2>Online články</h2>
+        <a href="#articles">Articles</a>
+        <a href="#artInsert">Add article</a>
+      </div>
+
+      <svg width="200" height="200" class="svgcko">
+          <!-- vyska trojuholnika je 51.96 => (70+52) = 122 -->
+          <!-- vsetky y su +13 aby to cele bolo centered -->
+          <circle cx="70" cy="83" r="60" fill="#ff0000"/>
+          <circle cx="100" cy="135" r="60" fill="#00ff00"/>
+          <circle cx="130" cy="83" r="60" fill="#0000ff"/>
+      </svg>
+      <p>Toto je svgčko</p>
+    </main>
+    <aside>
+      <button class="button-form" onclick="toggleDarkMode()">
+        Color scheme
+      </button>
+      <button class="button-form" onclick="toggleForm()">
+        Feedback
+      </button>
+      <button class="button-form" onclick="toggleFormLib()">
+        Feedback Library
+      </button>
+    </aside>
+  </div>
+</div>
+<div class="form-div form-background" id="form-background"></div>
+<div class="form-div" id="form-div">
+  <div class="magic" id="magic">
+    <div class="empty"></div>
+    <div class="imgoincrazy">
+      <div class="form-main" id="form-main">
+        <div class="form-header">
+          <h2 class="header-text form-h2">Feedback</h2>
+          <button onclick="toggleForm()">Späť</button>
+        </div>
+        <form class="form-form" onsubmit="return validateForm()" novalidate>
+          <span class="resizeable form-name">
+            <label>Meno:</label>
+            <input class="input" placeholder="•ᴗ•" type="text" name="name" id="name" maxlength="30" spellcheck="true" lang="sk" autocomplete="on" title="Max 30 char" required>
+          </span>
+          <span class="resizeable form-email">
+            <label>Email:</label>
+            <input class="input" placeholder="⬚@⬚.⬚" type="email" name="email" id="email" maxlength="50" spellcheck="true" lang="sk" autocomplete="on" title="Max 50 char" required>
+          </span>
+          <span class="resizeable form-url">
+            <label>Obrázok:</label>
+            <input class="input" placeholder="https://incowhat.github.io/awt-stranka/img/color_wheel480.png" type="url" name="url" id="url" maxlength="200" spellcheck="true" lang="sk" autocomplete="on" title="Tu vložte url obrázku, ktorý doplňuje vašu spätnú väzbu">
+          </span>
+          <span class="form-text">
+            <label>Spätná väzba:</label>
+            <textarea class="input" name="text" id="text" wrap="soft" placeholder="Teext" rows="3" maxlength="500" spellcheck="true" lang="sk" autocomplete="on" title="Tu napíšte vašu spätnú väzbu (max 500 char)" required></textarea>
+          </span>
+          <label>Najlepšia primárna farba?</label>
+          <div class="radios" id="radios">
+            <input type="radio" name="color" id="red">
+            <label for="red" class="red">Červená</label>
+            <input type="radio" name="color" id="green">
+            <label for="green" class="green">Zelená</label>
+            <input type="radio" name="color" id="blue">
+            <label for="blue" class="blue">Modrá</label>
+          </div>
+          <span class="resizeable form-keywords">
+            <label for="keywords">Kľúčové slová:</label>
+            <input type="text" id="keywords" list="keywordSuggestions" placeholder="Zadajte kľúčové slová" class="input" name="keywords">
+            <datalist id="keywordSuggestions">
+              <option value="Farby">
+              <option value="Blog">
+              <option value="Zadanie">
+              <option value="Farba">
+              <option value="Stránka">
+              <option value="Články">
+            </datalist>
+          </span>
+          <div class="boilerplate">
+            <label>GDPR alebo take dačo:</label>
+            <div class="gdpr-div" id="gdpr-div">
+              <input type="checkbox" name="gdpr" id="gdpr" required>
+              <label for="gdpr" class="gdpr-text">Potrvdením tohoto checkboxu vyjadrujem svoj neochvejný súhlas so spracovaním mojich osobných údajov, ktoré sú v tomto formulári uvedené v plnom rozsahu a bez akejkoľvek výhrady. Beriem na vedomie, že tento súhlas je platný až do odvolania, alebo do doby, kým ma neunaví čítať tieto dlhé a zbytočne formálne vety (mali byť ešte o niečo dlhšie ale gemini mi nedávalo veľa možností, a nechcelo sa mi do toho ďalej písať). Odoslaním formulára naďalej potvrdzujem, že som si prečítal/a celý tento text.</label>
+            </div>
+          </div>
+          <div>
+            <input type="reset" onclick="resetForm()">
+            <input type="submit">
+          </div>
+          <div class="legend" id="legend">
+            <label>Legenda (pre validáciu):</label>
+            <span class="legend-list">
+              <label class="greenyellow">All good</label>
+              <label class="redd">Required</label>
+              <label class="darkorchid">Invalid</label>
+              <label class="mediumturquoise">No need, no worries</label>
+            </span>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="empty"></div>
+  </div>
+</div>
+<div class="form-div" id="form-lib-div">
+  <div class="magic" id="lib-magic">
+    <div class="empty"></div>
+    <div class="imgoincrazy">
+      <div class="form-main library" id="form-lib-main">
+        <div class="form-header">
+          <h2 class="header-text form-h2">Opinions</h2>
+          <button onclick="toggleFormLib()">Späť</button>
+        </div>
+        <div class="library-collection" id="mustache-container"></div>
+      </div>
+    </div>
+    <div class="empty"></div>
+  </div>
+</div>
+<script id="mustache-template" type="text/template">
+  <div class="l-opinion">
+    <div class="l-opinion-h">
+      <div class="l-o-h-2">
+        <p class="l-name {{color}}">{{name}}</p>
+        <p class="l-mail">{{email}}</p>
+      </div>
+      <p class="l-time">{{submitted}}</p>
+    </div>
+    <p class="l-text">{{text}}</p>
+    {{#url}}
+      <img class="l-img" src="{{url}}" alt="Priložený obrázok">
+    {{/url}}
+  </div>
+</script>
