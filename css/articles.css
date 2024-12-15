@@ -245,6 +245,7 @@
 .articles-a-head p {
   margin: 0;
   margin-left: 0.5rem;
+  text-align: right;
 }
 
 .list-item-link {
@@ -334,8 +335,12 @@
   background-color: rgba(0, 0, 0, 0.2);
   margin: 1rem 0 0.5rem 0;
   margin-top: auto;
+  max-width: 100%;
+}
+.a-f-no-s {
   width: 100%;
 }
+
 
 .link-aa {
   display: flex;
@@ -355,7 +360,7 @@
 }
 
 .link-text-animated {
-  /* display: inline-block; */
+  display: inline-block;
   overflow: hidden;
   white-space: nowrap;
   width: 0;
@@ -374,8 +379,7 @@
 .articles-head-div {
   display: flex;
   flex-direction: column;
-  align-items: right;
-  justify-content: center;
+  /* justify-content: center; */
 }
 .a-head-h {
   margin-top: 0;
@@ -461,6 +465,13 @@ ol {
   margin-bottom: 1rem;
 }
 
+.articles-header-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .articles-per-page {
   display: flex;
   align-items: center;
@@ -527,4 +538,144 @@ ol {
 [data-color-scheme="dark"] .article-i-background {
   background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(3rem);
+}
+
+#form-main {
+  /* background-color: cyan; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 50rem;
+  padding: 1rem;
+  margin-top: 4.4rem;
+}
+
+#form-main h2 {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+#articleForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  font-family: "Roboto Mono", Consolas, monospace;
+  font-size: 1rem;
+  font-weight: 450;
+  color: ghostwhite;
+}
+
+#articleForm label {
+    margin-top: 0.5rem;
+}
+#articleForm label:first-of-type {
+    margin-top: 0;
+}
+
+#articleForm input[type="text"],
+#articleForm input[type="url"]{
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: ghostwhite;
+  font-family: "Roboto Mono", Consolas, monospace;
+  font-size: 1rem;
+  font-weight: 450;
+  border: solid 0.1rem rgb(120, 120, 120);
+  border-radius: 0.5rem;
+  outline: none;
+  transition: all 200ms ease;
+  margin: 0.2rem 0;
+}
+
+#articleForm input[type="text"]:hover,
+#articleForm input[type="url"]:hover {
+  border: solid 0.1rem rgb(110, 110, 110);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+#articleForm input[type="text"]:focus,
+#articleForm input[type="url"]:focus {
+  background-color: rgba(0, 0, 0, 0.5);
+  border: solid 0.1rem rgb(100, 100, 100);
+}
+
+#articleForm textarea {
+    width: 100%;
+    max-width: 90vw;
+    min-width: 8rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    color: ghostwhite;
+    font-family: "Roboto Mono", Consolas, monospace;
+    font-size: 1rem;
+    font-weight: 450;
+    border: solid 0.1rem rgb(120, 120, 120);
+    border-radius: 0.5rem;
+    outline: none;
+    transition: all 200ms ease;
+    margin: 0.2rem 0;
+}
+
+#articleForm textarea:hover {
+    border: solid 0.1rem rgb(110, 110, 110);
+    background-color: rgba(0, 0, 0, 0.3);
+}
+#articleForm textarea:focus {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: solid 0.1rem rgb(100, 100, 100);
+}
+
+#articleForm button {
+    font-family: "Roboto Mono", Consolas, monospace;
+    font-size: 1rem;
+    font-weight: 450;
+    color: rgb(202, 202, 202);
+    text-decoration: underline;
+    margin: 0.4rem;
+    border: none;
+    background: none;
+    transition: all 200ms ease;
+}
+
+#articleForm button:hover {
+    color: rgb(255, 255, 255);
+    transform: scale(1.1);
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+#articleForm fieldset {
+  border: 0.1rem solid;
+  border-radius: 0.5rem;
+  border-color: rgba(100, 100, 100, 0.6);
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+#articleForm fieldset legend {
+  padding: 0 0.5rem;
+}
+
+#articleForm input[type="file"] {
+  background-color: rgba(0, 0, 0, 0.1);
+  color: ghostwhite;
+  font-family: "Roboto Mono", Consolas, monospace;
+  font-size: 1rem;
+  font-weight: 450;
+  border: solid 0.1rem rgb(120, 120, 120);
+  border-radius: 0.5rem;
+  outline: none;
+  transition: all 200ms ease;
+  margin: 0.2rem 0;
+}
+
+#articleForm input[type="file"]:hover {
+  border: solid 0.1rem rgb(110, 110, 110);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+#articleForm input[type="file"]:focus {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: solid 0.1rem rgb(100, 100, 100);
 }

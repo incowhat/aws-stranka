@@ -10,11 +10,16 @@
             <span class="link-text">Add</span>
             <span class="link-text-animated l-t-aa">​ Article</span>
             </a>
-        </div>
-        <div class="articles-per-page">
-          <label for="articlesPerPage">Articles per page: </label>
-          <input type="number" id="articlesPerPage" name="articlesPerPage" min="1" max="100" value="{{articlesPerPage}}">
-        </div>
+          </div>
+          <div class="articles-header-nav">
+            <div class="articles-per-page">
+              <label for="articlesPerPage">Articles per page: </label>
+              <input type="number" id="articlesPerPage" name="articlesPerPage" min="1" max="100" value="{{articlesPerPage}}">
+            </div>
+            <label>
+              <input type="checkbox" id="filterByTag">Sort by tag
+            </label>
+          </div>
       </header>
       {{#articles}}
       <article class="articles-article list-item">
@@ -24,7 +29,9 @@
             <p>{{dateCreated}}</p>
           </div>
           <p class="article-author">by {{author}}</p>
-          <div class="article-preview">{{{content}}}</div>
+          <div class="safety-div">
+            <div class="article-preview">{{{content}}}</div>
+          </div>
         </a>
       </article>
       {{/articles}}
@@ -148,7 +155,7 @@
             Keywords:
             {{tags}}
         </p>
-        <footer class="article-footer">
+        <footer class="article-footer a-f-no-s">
             <a href="{{backLink}}" class="linkAsButton"><< Back</a>
             <a href="{{editLink}}" class="linkAsButton">Edit</a>
             <a href="{{deleteLink}}" class="linkAsButton">Delete</a>

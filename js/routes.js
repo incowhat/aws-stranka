@@ -214,49 +214,58 @@ async function renderArticles(articles, targetElm, responseJSON, page, doHashCha
 }
 
 function fetchAndDisplayArticles(targetElm, page, total, doHashChange = true) {
-    pageNumber = Number(page) || 1
-    totalPages = Number(total) || totalPages
+    pageNumber = Number(page) || 1;
+    totalPages = Number(total) || totalPages;
 
     if (pageNumber > totalPages) {
-        pageNumber = totalPages
+        pageNumber = totalPages;
     }
 
-    console.log("page num and total and app:", pageNumber, totalPages)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    console.log("page num and total and app:", pageNumber, totalPages);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    const filterByTagElement = document.getElementById("filterByTag");
 
     const reqTotalFinder = new XMLHttpRequest();
-    reqTotalFinder.open("GET", `${urlBase}/article?max=1`, true)
+    reqTotalFinder.open("GET", `${urlBase}/article?max=1`, true);
 
     reqTotalFinder.onload = function () {
         if (reqTotalFinder.status >= 200 && reqTotalFinder.status < 300) {
-            console.log(this.responseText)
+            console.log(this.responseText);
             const totalCountJson = JSON.parse(reqTotalFinder.responseText);
             const totalCount = totalCountJson.meta.totalCount;
-            const articlesPerPage = localStorage.getItem('articlesPerPage') || 20;
+            const articlesPerPage = localStorage.getItem("articlesPerPage") || 20;
             totalPages = Math.ceil(totalCount / articlesPerPage);
 
             const offset = totalCount - (articlesPerPage * pageNumber);
-            let urlQuery
+            let urlQuery;
             if (offset < 0) {
                 urlQuery = `?offset=0&max=${articlesPerPage + offset}`;
             } else {
                 urlQuery = `?offset=${offset}&max=${articlesPerPage}`;
             }
 
+
             const reqArticles = new XMLHttpRequest();
+            if (filterByTagElement && filterByTagElement.checked) {
+                urlQuery += `&tag=farby`;
+            }
+
             reqArticles.open("GET", `${urlBase}/article${urlQuery}`, true);
 
-
-            reqArticles.onload = async function () { // render inside of articles req
+            reqArticles.onload = async function () {
+                // render inside of articles req
                 if (reqArticles.status == 200) {
-                    console.log(this.responseText)
-                    console.log("page num and total:", pageNumber, totalPages)
-                    let responseJSON = JSON.parse(reqArticles.responseText)
+                    console.log(this.responseText);
+                    console.log("page num and total:", pageNumber, totalPages);
+                    let responseJSON = JSON.parse(reqArticles.responseText);
 
-                    responseJSON.articles.reverse();
+                    responseJSON.articles.reverse(); // Reintroduce the list reversal here
+
+
                     addArtDetailLink2ResponseJson(responseJSON);
 
-                    responseJSON.hasPrev = pageNumber > 1
+                    responseJSON.hasPrev = pageNumber > 1;
                     responseJSON.hasNext = pageNumber < totalPages;
                     responseJSON.hasFirst = pageNumber > 1;
                     responseJSON.hasLast = pageNumber < totalPages;
@@ -264,30 +273,42 @@ function fetchAndDisplayArticles(targetElm, page, total, doHashChange = true) {
                     responseJSON.prevOffset = pageNumber - 1;
                     responseJSON.nextOffset = pageNumber + 1;
                     responseJSON.totalPages = totalPages;
-                    fetchArticleContents(responseJSON.articles, targetElm, responseJSON, page, doHashChange);
+                    fetchArticleContents(
+                        responseJSON.articles,
+                        targetElm,
+                        responseJSON,
+                        page,
+                        doHashChange
+                    );
+
+                    // Add event listener to the checkbox
+                    if (filterByTagElement) {
+                        filterByTagElement.onchange = function () {
+                            fetchAndDisplayArticles(targetElm, 1, totalPages, true); // Refetch articles on checkbox change
+                        }
+                    }
 
                 } else {
                     // Handle error for reqArticles
                     const errMsgObj = { errMessage: reqArticles.responseText };
-                    console.log("ARTICLE LOADING ERROR")
+                    console.log("ARTICLE LOADING ERROR");
                     document.getElementById(targetElm).innerHTML = Mustache.render(
                         document.getElementById("template-articles-error").innerHTML,
                         errMsgObj
-                    )
+                    );
                 }
-            }
-            reqArticles.send()
-
+            };
+            reqArticles.send();
         } else {
             // Handle error for reqTotalFinder
             const errMsgObj = { errMessage: reqTotalFinder.responseText };
             document.getElementById(targetElm).innerHTML = Mustache.render(
                 document.getElementById("template-articles-error").innerHTML,
                 errMsgObj
-            )
+            );
         }
-    }
-    reqTotalFinder.send()
+    };
+    reqTotalFinder.send();
 }
 
 function addArtDetailLink2ResponseJson(responseJSON) {
@@ -341,7 +362,7 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                 responseJSON.submitBtTitle = "Save article";
                 responseJSON.backLink = `#article/${artIdFromHash}/${offsetFromHash}/${totalCountFromHash}`;
 
-                renderArticleForm(responseJSON, forEdit, artIdFromHash, offsetFromHash, totalCountFromHash)
+                renderArticleForm(responseJSON, true, artIdFromHash, offsetFromHash, totalCountFromHash)
             } else {
                 responseJSON.backLink = `#articles/${pageNumber}/${totalPages}`;
                 responseJSON.editLink =
@@ -474,7 +495,7 @@ async function insertArticle(targetElm) {
     renderArticleForm(responseJSON, false)
 }
 
-async function renderArticleForm (responseJSON, editing=false, artIdFromHash='', offsetFromHash='', totalCountFromHash='') {
+async function renderArticleForm(responseJSON, editing = false, artIdFromHash = '', offsetFromHash = '', totalCountFromHash = '') {
     let templates;
     try {
         const response = await fetch('templates/articles.html');

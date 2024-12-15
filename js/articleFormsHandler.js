@@ -1,5 +1,5 @@
 export default class articleFormsHandler {
-    processArtEditFrmData(event) {
+    async processArtEditFrmData(event) {
         event.preventDefault();
 
         //1. Gather and check the form data
@@ -7,9 +7,7 @@ export default class articleFormsHandler {
             title: this.formElements.namedItem("title").value.trim(),
             content: this.formElements.namedItem("content").value.trim(),
             author: this.formElements.namedItem("author").value.trim(),
-
             imageLink: this.formElements.namedItem("imageLink").value.trim(),
-            tags: this.formElements.namedItem("tags").value.trim()
         };
 
         if (!(articleData.title && articleData.content)) {
@@ -25,23 +23,6 @@ export default class articleFormsHandler {
             delete articleData.imageLink;
         }
 
-        if (!articleData.tags) {
-            delete articleData.tags;
-        } else {
-            articleData.tags = articleData.tags.split(","); //zmeni retazec s tagmi na pole. Oddelovac poloziek je ciarka.
-            //changes the string with tags to array. Comma is the separator
-            articleData.tags = articleData.tags.map(tag => tag.trim()); //odstráni prázdne znaky na začiatku a konci každého kľúčového slova
-            //deletes white spaces from the beginning and the end of each tag string
-
-            //newArtData.tags=newArtData.tags.map(function(tag) {return tag.trim()}); //alternativny sposob zapisu predch. prikazu
-            //an alternative way of writing the previous command
-
-            articleData.tags = articleData.tags.filter(tag => tag); //odstráni tie tagy, ktoré sú teraz len prázdne reťazce
-            //removes those tags that are now just empty strings
-            if (articleData.tags.length == 0) {
-                delete articleData.tags;
-            }
-        }
 
         //2. Set up the request
 
@@ -66,7 +47,32 @@ export default class articleFormsHandler {
                     return Promise.reject(new Error(`Server answered with ${response.status}: ${response.statusText}.`)); //we return a rejected promise to be catched later
                 }
             })
-            .then(responseJSON => { //here we process the returned response data in JSON ...
+            .then(async responseJSON => { //here we process the returned response data in JSON ...
+               //1. make sure that the tag "farby" exist
+                try {
+                    const response = await fetch(`${this.serverUrl}/tag`);
+                    if (!response.ok) {
+                        throw new Error(`Server answered with ${response.status}: ${response.statusText}.`);
+                    }
+                    const tagsJson = await response.json();
+                    if (!tagsJson.some(tag => tag.name === "farby")) {
+                        // if the tag "farby" is not on server we should create it
+                        const putSettings = {
+                            method: 'PUT'
+                        };
+                         await fetch(`${this.serverUrl}/article/${this.articleId}/tag/farby`, putSettings)
+                    }
+
+                    //2. Add the tag "farby" to the article
+
+                     const putSettings = {
+                            method: 'PUT'
+                     };
+                    await fetch(`${this.serverUrl}/article/${this.articleId}/tag/farby`, putSettings);
+
+                } catch (error) {
+                        console.error(`Failed to add tag 'farby' during article editing: ${error}`);
+                }
                 window.alert("Updated article successfully saved on server");
                 window.location.hash = `#article/${this.articleId}/${this.offset}/${this.totalCount}`;
             })
@@ -74,20 +80,18 @@ export default class articleFormsHandler {
                 window.alert(`Failed to save the updated article on server. ${error}`);
 
             });
-
     }
 
-    processArtInsertFrmData(event) {
+
+   async processArtInsertFrmData(event) {
         event.preventDefault();
         //1. Gather and check the form data
         const articleData = {
             title: this.formElements.namedItem("title").value.trim(),
             content: this.formElements.namedItem("content").value.trim(),
             author: this.formElements.namedItem("author").value.trim(),
-
             imageLink: this.formElements.namedItem("imageLink").value.trim(),
-            tags: this.formElements.namedItem("tags").value.trim()
-        };
+           };
 
         if (!(articleData.title && articleData.content)) {
             window.alert("Please, enter article title and content");
@@ -100,24 +104,6 @@ export default class articleFormsHandler {
 
         if (!articleData.imageLink) {
             delete articleData.imageLink;
-        }
-
-        if (!articleData.tags) {
-            delete articleData.tags;
-        } else {
-            articleData.tags = articleData.tags.split(","); //zmeni retazec s tagmi na pole. Oddelovac poloziek je ciarka.
-            //changes the string with tags to array. Comma is the separator
-            articleData.tags = articleData.tags.map(tag => tag.trim()); //odstráni prázdne znaky na začiatku a konci každého kľúčového slova
-            //deletes white spaces from the beginning and the end of each tag string
-
-            //newArtData.tags=newArtData.tags.map(function(tag) {return tag.trim()}); //alternativny sposob zapisu predch. prikazu
-            //an alternative way of writing the previous command
-
-            articleData.tags = articleData.tags.filter(tag => tag); //odstráni tie tagy, ktoré sú teraz len prázdne reťazce
-            //removes those tags that are now just empty strings
-            if (articleData.tags.length == 0) {
-                delete articleData.tags;
-            }
         }
 
         //2. Set up the request
@@ -144,7 +130,33 @@ export default class articleFormsHandler {
                     return Promise.reject(new Error(`Server answered with ${response.status}: ${response.statusText}.`)); //we return a rejected promise to be catched later
                 }
             })
-            .then(responseJSON => { //here we process the returned response data in JSON ...
+            .then(async responseJSON => { //here we process the returned response data in JSON ...
+                //1. make sure that the tag "farby" exist
+                try {
+                    const response = await fetch(`${this.serverUrl}/tag`);
+                    if (!response.ok) {
+                        throw new Error(`Server answered with ${response.status}: ${response.statusText}.`);
+                    }
+                    const tagsJson = await response.json();
+                    if (!tagsJson.some(tag => tag.name === "farby")) {
+                        // if the tag "farby" is not on server we should create it
+                        const putSettings = {
+                            method: 'PUT'
+                        };
+                        await fetch(`${this.serverUrl}/article/${responseJSON.id}/tag/farby`, putSettings)
+                    }
+                     //2. Add the tag "farby" to the article
+
+                    const putSettings = {
+                            method: 'PUT'
+                    };
+                    await fetch(`${this.serverUrl}/article/${responseJSON.id}/tag/farby`, putSettings);
+
+                } catch (error) {
+                        console.error(`Failed to add tag 'farby' during article insertion: ${error}`);
+                    }
+
+
                 window.alert("New article successfully saved on server");
                 window.location.hash = `#article/${responseJSON.id}/0/1`; //redirect to the new article
             })
@@ -262,72 +274,5 @@ export default class articleFormsHandler {
         }
 
 
-    }
-
-    /**
-     * Process form data and sends the article to server
-     * @param event - event object, to prevent default processing
-     */
-    processArtInsertFrmData(event) {
-        event.preventDefault();
-
-        //1. Gather and check the form data
-        const articleData = {
-            title: this.formElements.namedItem("title").value.trim(),
-            content: this.formElements.namedItem("content").value.trim(),
-            author: this.formElements.namedItem("author").value.trim(),
-            imageLink: this.formElements.namedItem("imageLink").value.trim(),
-            tags: this.formElements.namedItem("tags").value.trim()
-        };
-
-        if (!(articleData.title && articleData.content)) {
-            window.alert("Please, enter article title and content");
-            return;
-        }
-
-        if (!articleData.author) {
-            articleData.author = "Anonymous";
-        }
-
-        if (!articleData.imageLink) {
-            delete articleData.imageLink;
-        }
-
-        if (!articleData.tags) {
-            delete articleData.tags;
-        } else {
-            articleData.tags = articleData.tags.split(",");
-            articleData.tags = articleData.tags.map(tag => tag.trim());
-            articleData.tags = articleData.tags.filter(tag => tag);
-            if (articleData.tags.length == 0) {
-                delete articleData.tags;
-            }
-        }
-
-        //2. Set up the POST request
-        const postReqSettings = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8',
-            },
-            body: JSON.stringify(articleData)
-        };
-
-        //3. Execute the POST request
-        fetch(`${this.serverUrl}/article`, postReqSettings)
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
-                } else {
-                    return Promise.reject(new Error(`Server answered with ${response.status}: ${response.statusText}.`));
-                }
-            })
-            .then(responseJSON => {
-                window.alert("New article successfully saved on server");
-                window.location.hash = `#articles/0/0`;
-            })
-            .catch(error => {
-                window.alert(`Failed to save the new article on server. ${error}`);
-            });
     }
 }
