@@ -2,7 +2,6 @@ import Router from "./paramHashRouter.js";
 import articleFormsHandler from "./articleFormsHandler.js";
 
 const urlBase = "https://wt.kpi.fei.tuke.sk/api";
-var articlesPerPage = 20;
 var pageNumber = 1;
 var totalPages = 1;
 
@@ -100,7 +99,9 @@ export const Routes = [
     {
         hash: "artInsert",
         target: "router-view",
-        getTemplate: insertArticle
+        getTemplate: (targetElm) => {
+            fetchAndDisplayArticles(targetElm, pageNumber, totalPages, false)
+        }
     }
 ];
 
@@ -143,10 +144,10 @@ function limitContent(content, maxLength) {
     return lastSpaceIndex > 0 ? trimmedContent.substring(0, lastSpaceIndex) + '...' : trimmedContent + '...';
 }
 
-function fetchArticleContents(articles, targetElm, responseJSON, page) {
+function fetchArticleContents(articles, targetElm, responseJSON, page, doHashChange) {
     let completedRequests = 0;
     if (articles.length === 0) {
-        renderArticles(articles, targetElm, responseJSON, page)
+        renderArticles(articles, targetElm, responseJSON, page, doHashChange)
     }
 
     articles.forEach((article, index) => {
@@ -165,7 +166,7 @@ function fetchArticleContents(articles, targetElm, responseJSON, page) {
             }
             completedRequests++;
             if (completedRequests === articles.length) {
-                renderArticles(articles, targetElm, responseJSON, page)
+                renderArticles(articles, targetElm, responseJSON, page, doHashChange)
             }
         });
 
@@ -174,7 +175,7 @@ function fetchArticleContents(articles, targetElm, responseJSON, page) {
     });
 }
 
-async function renderArticles(articles, targetElm, responseJSON, page) {
+async function renderArticles(articles, targetElm, responseJSON, page, doHashChange = true) {
     responseJSON.articles = articles;
     let templates;
     try {
@@ -190,21 +191,37 @@ async function renderArticles(articles, targetElm, responseJSON, page) {
             ...article,
             author: article.author && article.author !== "{{userName}}" ? article.author : "Anonymous" // Default to Anonymous if author is null
         }));
-
-
-        document.getElementById(targetElm).innerHTML = Mustache.render(templates.getElementById("template-articles").innerHTML, responseJSON);
-        history.pushState(null, '', `#articles/${pageNumber}/${totalPages}`);
-        console.log("render done");
     } catch (error) {
         console.error("Error loading template:", error);
         document.getElementById(targetElm).innerHTML = "<p>Error loading template</p>";
     }
+
+    document.getElementById(targetElm).innerHTML = Mustache.render(templates.getElementById("template-articles").innerHTML, responseJSON);
+    if (doHashChange) {
+        history.pushState(null, '', `#articles/${pageNumber}/${totalPages}`);
+    }
+    console.log("render done");
+    const inputElement = document.getElementById('articlesPerPage');
+    if (!doHashChange) {
+        insertArticle(targetElm)
+    } else {
+        inputElement.addEventListener("change", function (event) {
+            localStorage.setItem("articlesPerPage", event.target.value)
+            window.location.hash = "articles"
+            console.log("location hash updated")
+        });
+    }
 }
 
-function fetchAndDisplayArticles(targetElm, page, total) {
+function fetchAndDisplayArticles(targetElm, page, total, doHashChange = true) {
     pageNumber = Number(page) || 1
-    total = Number(total) || totalPages
-    console.log("page num and total:", pageNumber, totalPages)
+    totalPages = Number(total) || totalPages
+
+    if (pageNumber > totalPages) {
+        pageNumber = totalPages
+    }
+
+    console.log("page num and total and app:", pageNumber, totalPages)
     window.scrollTo({ top: 0, behavior: 'smooth' })
 
     const reqTotalFinder = new XMLHttpRequest();
@@ -215,16 +232,16 @@ function fetchAndDisplayArticles(targetElm, page, total) {
             console.log(this.responseText)
             const totalCountJson = JSON.parse(reqTotalFinder.responseText);
             const totalCount = totalCountJson.meta.totalCount;
+            const articlesPerPage = localStorage.getItem('articlesPerPage') || 20;
             totalPages = Math.ceil(totalCount / articlesPerPage);
 
-            let urlQuery
             const offset = totalCount - (articlesPerPage * pageNumber);
+            let urlQuery
             if (offset < 0) {
-                urlQuery = `?offset=0&max=${articlesPerPage+offset}`;
+                urlQuery = `?offset=0&max=${articlesPerPage + offset}`;
             } else {
                 urlQuery = `?offset=${offset}&max=${articlesPerPage}`;
             }
-
 
             const reqArticles = new XMLHttpRequest();
             reqArticles.open("GET", `${urlBase}/article${urlQuery}`, true);
@@ -243,14 +260,11 @@ function fetchAndDisplayArticles(targetElm, page, total) {
                     responseJSON.hasNext = pageNumber < totalPages;
                     responseJSON.hasFirst = pageNumber > 1;
                     responseJSON.hasLast = pageNumber < totalPages;
-
+                    responseJSON.articlesPerPage = articlesPerPage;
                     responseJSON.prevOffset = pageNumber - 1;
                     responseJSON.nextOffset = pageNumber + 1;
                     responseJSON.totalPages = totalPages;
-
-                    fetchArticleContents(responseJSON.articles, targetElm, responseJSON, page)
-
-
+                    fetchArticleContents(responseJSON.articles, targetElm, responseJSON, page, doHashChange);
 
                 } else {
                     // Handle error for reqArticles
@@ -263,8 +277,6 @@ function fetchAndDisplayArticles(targetElm, page, total) {
                 }
             }
             reqArticles.send()
-
-
 
         } else {
             // Handle error for reqTotalFinder
@@ -307,7 +319,7 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
             // Ensure 'content' property exists and is not null (add default string if needed)
             responseJSON.content = responseJSON.content || "";
             responseJSON.author = responseJSON.author || "Anonymous"; // New check here
-            
+
             console.log(responseJSON.dateCreated)
             console.log(responseJSON.lastUpdated)
             if (responseJSON.lastUpdated && (responseJSON.lastUpdated != responseJSON.dateCreated)) {
@@ -329,33 +341,7 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                 responseJSON.submitBtTitle = "Save article";
                 responseJSON.backLink = `#article/${artIdFromHash}/${offsetFromHash}/${totalCountFromHash}`;
 
-                let templates
-                try {
-                    // console.log("Fetching template from:", templatePath);
-                    const response = await fetch('templates/articles.html');
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    let html = await response.text();
-                    const parser = new DOMParser()
-
-                    templates = parser.parseFromString(html, "text/html")
-                } catch (error) {
-                    console.error("Error loading template:", error);
-                    return "<p>Error loading template</p>";
-                }
-
-
-                document.getElementById(targetElm).innerHTML =
-                    Mustache.render(
-                        templates.getElementById("template-article-form").innerHTML,
-                        responseJSON
-                    );
-
-                if (!window.artFrmHandler) {
-                    window.artFrmHandler = new articleFormsHandler("https://wt.kpi.fei.tuke.sk/api");
-                }
-                window.artFrmHandler.assignFormAndArticle("articleForm", "hiddenElm", artIdFromHash, offsetFromHash, totalCountFromHash);
+                renderArticleForm(responseJSON, forEdit, artIdFromHash, offsetFromHash, totalCountFromHash)
             } else {
                 responseJSON.backLink = `#articles/${pageNumber}/${totalPages}`;
                 responseJSON.editLink =
@@ -378,12 +364,12 @@ function fetchAndProcessArticle(targetElm, artIdFromHash, offsetFromHash, totalC
                     return "<p>Error loading template</p>";
                 }
 
-                
+
                 document.getElementById(targetElm).innerHTML =
-                Mustache.render(
-                    templates.getElementById("template-article").innerHTML,
-                    responseJSON
-                );
+                    Mustache.render(
+                        templates.getElementById("template-article").innerHTML,
+                        responseJSON
+                    );
                 // Add link disabling toggle
                 const articleElement = document.querySelector("#article-content");
                 addLinkToggle(articleElement)
@@ -485,6 +471,10 @@ async function insertArticle(targetElm) {
         tags: "" // add this
     };
 
+    renderArticleForm(responseJSON, false)
+}
+
+async function renderArticleForm (responseJSON, editing=false, artIdFromHash='', offsetFromHash='', totalCountFromHash='') {
     let templates;
     try {
         const response = await fetch('templates/articles.html');
@@ -500,14 +490,31 @@ async function insertArticle(targetElm) {
         return "<p>Error loading template</p>";
     }
 
-    document.getElementById(targetElm).innerHTML =
+    document.getElementById('article-form-container').innerHTML =
         Mustache.render(
             templates.getElementById("template-article-form").innerHTML,
             responseJSON
         );
 
-    if (!window.artFrmHandler) {
-        window.artFrmHandler = new articleFormsHandler("https://wt.kpi.fei.tuke.sk/api");
+    setTimeout(function () {
+        let element = document.getElementById("article-i-div");
+        let element2 = document.getElementById("article-i-background");
+        let body = document.getElementById("body");
+        element.classList.toggle("open-article-i");
+        element2.classList.toggle("open-article-i");
+        body.classList.add("open-article-i-body");
+    }, 10);
+
+    if (editing) {
+        if (!window.artFrmHandler) {
+            window.artFrmHandler = new articleFormsHandler("https://wt.kpi.fei.tuke.sk/api");
+        }
+        window.artFrmHandler.assignFormAndArticle("articleForm", "hiddenElm", artIdFromHash, offsetFromHash, totalCountFromHash);
+    } else {
+        if (!window.artFrmHandler) {
+            window.artFrmHandler = new articleFormsHandler("https://wt.kpi.fei.tuke.sk/api");
+        }
+        window.artFrmHandler.assignFormAndArticle("articleForm", "hiddenElm", -1, 0, 0); //articleId < 0 => new article
+
     }
-    window.artFrmHandler.assignFormAndArticle("articleForm", "hiddenElm", -1, 0, 0); //articleId < 0 => new article
 }

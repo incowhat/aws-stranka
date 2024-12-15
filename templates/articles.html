@@ -3,6 +3,19 @@
   <div class="content-grid">
     <aside class="empty"></aside>
     <div class="articles-main form-main" id="articles-main">
+      <header class="articles-header">
+        <div class="articles-head-div">
+          <h2 class="a-head-h">Articles</h2>
+          <a href="#artInsert" class="link-aa a-head-a">
+            <span class="link-text">Add</span>
+            <span class="link-text-animated l-t-aa">​ Article</span>
+            </a>
+        </div>
+        <div class="articles-per-page">
+          <label for="articlesPerPage">Articles per page: </label>
+          <input type="number" id="articlesPerPage" name="articlesPerPage" min="1" max="100" value="{{articlesPerPage}}">
+        </div>
+      </header>
       {{#articles}}
       <article class="articles-article list-item">
           <a href="{{detailLink}}" class="list-item-link">
@@ -18,28 +31,33 @@
       <footer class="article-footer">
         {{#hasFirst}}
           <a href="#articles/1/{{totalPages}}" class="link-aa">
-            <span class="link-text">First</span><span class="link-text-animated">&#x200B Page</span>
+            <span class="link-text">First</span>
+            <span class="link-text-animated">​ Page</span>
            </a>
         {{/hasFirst}}
         {{#hasPrev}}
           <a href="#articles/{{prevOffset}}/{{totalPages}}" class="link-aa">
-            <span class="link-text">Previous</span><span class="link-text-animated">&#x200B Page</span>
+            <span class="link-text">Previous</span>
+            <span class="link-text-animated">​ Page</span>
           </a>
         {{/hasPrev}}
         {{#hasNext}}
           <a href="#articles/{{nextOffset}}/{{totalPages}}" class="link-aa">
-            <span class="link-text">Next</span><span class="link-text-animated">&#x200B Page</span>
+            <span class="link-text">Next</span>
+            <span class="link-text-animated">​ Page</span>
           </a>
         {{/hasNext}}
         {{#hasLast}}
         <a href="#articles/{{totalPages}}/{{totalPages}}" class="link-aa">
-            <span class="link-text">Last</span><span class="link-text-animated">&#x200B Page</span>
+            <span class="link-text">Last</span>
+            <span class="link-text-animated">​ Page</span>
          </a>
         {{/hasLast}}
       </footer>
     </div>
     <aside class="empty"></aside>
   </div>
+  <div id="article-form-container"></div>
 </script>
 
 <script id="template-articles-error" type="text/template">
@@ -138,16 +156,18 @@
     </article>
     <aside class="empty"></aside>
   </div>
+  <div id="article-form-container"></div>
 </script>
 
 <script id="template-article-form" type="text/template">
-  <div class="background background-a2"></div>
-  <div class="content-grid">
-    <aside class="empty"></aside>
-    <article class="form-main">
-        <h2>{{formTitle}}</h2> <br><br>
-
-        <form id="articleForm">
+  <div class="article-i-div article-i-background" id="article-i-background"></div>
+  <div class="article-i-div" id="article-i-div">
+    <div class="magic" id="magic">
+      <div class="empty"></div>
+      <div class="imgoincrazy">
+        <div class="form-main" id="form-main">
+          <h2>{{formTitle}}</h2> <br><br>
+          <form id="articleForm">
             <label for="author">Author:</label>
             <input type="text" name="author" id="author" value="{{author}}" size="50"
                     title="Article author, max. length 100 characters."
@@ -194,13 +214,13 @@
             <br> <br>
             <button type="reset"> Reset Form </button>
             <button type="submit"> {{submitBtTitle}} </button>
-
-        </form>
-    </article>
-    <aside class="empty"></aside>
-    <footer>
-        <a href="{{backLink}}" class="linkAsButton"><< Back</a>
-        <a href="#menuTitle" class="linkAsButton">Up to the menu</a>
-    </footer>
-  </div>
+          </form>
+          <footer>
+            <a href="{{backLink}}" class="linkAsButton" id="backButton"><< Back</a>
+          </footer>
+        </div>
+      </div>
+      <div class="empty"></div>
+    </div>
+  </div>  
 </script>
